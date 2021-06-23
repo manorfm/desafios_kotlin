@@ -28,20 +28,19 @@ class Math2 {
             return aux
         }
 
-        var aux2 = aux.toBigDecimal()
-
-        var inc = BigDecimal("0.1")
+        var aux2 = aux.toDouble()
+        var inc = 0.1
         for (i in 0 until precision) {
             do  {
-                val square2 = aux2.pow(2)
-                val compared = square2.compareTo(value.toBigDecimal())
+                val square2 = aux2 * aux2 // o erro está na multiplicação
+                val compared = square2.compareTo(value)
                 if (compared == 1) {
                     break
                 }
-                aux2 = aux2.add(inc)
+                aux2 += inc
             } while(true)
-            aux2 = aux2.subtract(inc)
-            inc = inc.divide(BigDecimal.TEN)
+            aux2 -= inc
+            inc /= 10
         }
 
         return aux2.toDouble()
